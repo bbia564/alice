@@ -1,6 +1,17 @@
 import 'package:expected_date/db_expected/db_expected.dart';
-import 'package:expected_date/router/expected_names.dart';
-import 'package:expected_date/router/expected_pages.dart';
+import 'package:expected_date/pages/expected_first/expected_first_binding.dart';
+import 'package:expected_date/pages/expected_first/expected_first_view.dart';
+import 'package:expected_date/pages/expected_mang/expected_mang_binding.dart';
+import 'package:expected_date/pages/expected_mang/expected_mang_view.dart';
+import 'package:expected_date/pages/expected_second/expected_second_binding.dart';
+import 'package:expected_date/pages/expected_second/expected_second_check.dart';
+import 'package:expected_date/pages/expected_second/expected_second_view.dart';
+import 'package:expected_date/pages/expected_tab/expected_tab_binding.dart';
+import 'package:expected_date/pages/expected_tab/expected_tab_view.dart';
+import 'package:expected_date/pages/expected_third/expected_third_binding.dart';
+import 'package:expected_date/pages/expected_third/expected_third_view.dart';
+import 'package:expected_date/pages/no_network/no_network_binding.dart';
+import 'package:expected_date/pages/no_network/no_network_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,8 +31,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      getPages: ExpectedPages.list,
-      initialRoute: ExpectedNames.expectedTab,
+      getPages: Alices,
+      initialRoute: '/',
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: primaryColor,
@@ -72,3 +83,13 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+List<GetPage<dynamic>> Alices = [
+  GetPage(name: '/', page: () => const ExpectedMangView(), binding: ExpectedMangBinding()),
+  GetPage(name: '/reload', page: () => NoNetworkPage(), binding: NoNetworkBinding()),
+  GetPage(name: '/expectedTab', page: () => ExpectedTabPage(), binding: ExpectedTabBinding()),
+  GetPage(name: '/expectedCheck', page: () => const ExpectedSecondCheck()),
+  GetPage(name: '/expectedFirst', page: () => ExpectedFirstPage(), binding: ExpectedFirstBinding()),
+  GetPage(name: '/expectedSecond', page: () => ExpectedSecondPage(), binding: ExpectedSecondBinding()),
+  GetPage(name: '/expectedThird', page: () => ExpectedThirdPage(), binding: ExpectedThirdBinding()),
+];
